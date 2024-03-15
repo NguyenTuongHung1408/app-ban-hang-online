@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbanhangonline.R;
-import com.example.appbanhangonline.activity.ChiTietSanPham;
+import com.example.appbanhangonline.activity.ChiTietSanPhamActivity;
 import com.example.appbanhangonline.model.Sanpham;
 import com.squareup.picasso.Picasso;
 
@@ -64,7 +64,7 @@ public class SanPhamFlashSaleAdapter extends RecyclerView.Adapter<SanPhamFlashSa
             imghinhsanpham =itemView.findViewById(R.id.anhSanPham);
             txtgiasanpham =itemView.findViewById(R.id.giaSanPham);
             itemView.setOnClickListener(v -> {
-                Intent intent=new Intent(context, ChiTietSanPham.class);
+                Intent intent=new Intent(context, ChiTietSanPhamActivity.class);
                 intent.putExtra("thongtinsanpham",arraysanpham.get(getAdapterPosition()));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 checkconnect.ShowToast_Short(context,arraysanpham.get(getAdapterPosition()).getTensanpham());

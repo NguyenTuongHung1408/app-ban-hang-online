@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppBanHangOnline"
+        android:name=".App"
         tools:targetApi="31">
         <activity
             android:name=".activity.MainActivity"
@@ -22,6 +23,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.GiayActivity" />
+        <activity android:name=".activity.NonActivity" />
+        <activity android:name=".activity.AoActivity" />
+        <activity android:name=".activity.QuanActivity" />
+        <activity android:name=".activity.DepActivity" />
+        <activity android:name=".activity.ThongTinActivity" />
+        <activity android:name=".activity.LienHeActivity" />
+        <activity android:name=".activity.ChiTietSanPhamActivity" />
+        <activity android:name=".activity.GiohangActivity" />
+        <activity android:name=".activity.Thongtinkhachhang" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.ProfileActivity" />
     </application>
 
 </manifest>

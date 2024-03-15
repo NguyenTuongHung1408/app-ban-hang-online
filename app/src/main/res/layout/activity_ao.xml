@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:background="@color/colorToolBar"
         app:titleTextColor="#FFFFFF"
-        app:title="Áo"
+        app:title="Thức ăn nhanh"
         android:id="@+id/toolbarao"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">

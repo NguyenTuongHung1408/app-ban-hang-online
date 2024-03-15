@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbanhangonline.R;
-import com.example.appbanhangonline.activity.ChiTietSanPham;
+import com.example.appbanhangonline.activity.ChiTietSanPhamActivity;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -69,7 +69,7 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ITemHold
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(context, ChiTietSanPham.class);
+                    Intent intent=new Intent(context, ChiTietSanPhamActivity.class);
                     intent.putExtra("thongtinsanpham",arraysanpham.get(getAdapterPosition()));
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     checkconnect.ShowToast_Short(context,arraysanpham.get(getAdapterPosition()).getTensanpham());

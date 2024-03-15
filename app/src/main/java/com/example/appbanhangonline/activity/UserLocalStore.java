@@ -3,6 +3,8 @@ package com.example.appbanhangonline.activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.appbanhangonline.model.Account;
+
 public class UserLocalStore {
 
     public static final String SP_NAME = "userDetails";
@@ -13,11 +15,10 @@ public class UserLocalStore {
         userLocalDatabase = context.getSharedPreferences(SP_NAME, 0);
     }
 
-    public void storeUserData(User user) {
+    public void storeUserData(Account account) {
         SharedPreferences.Editor userLocalDatabaseEditor = userLocalDatabase.edit();
-        userLocalDatabaseEditor.putString("email", user.email);
-        userLocalDatabaseEditor.putString("username", user.username);
-        userLocalDatabaseEditor.putString("password", user.password);
+        userLocalDatabaseEditor.putString("email", account.getEmail());
+        userLocalDatabaseEditor.putString("username", account.getUserName());
         userLocalDatabaseEditor.commit();
     }
 

@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="Châu Hoàng"
+                android:text="User"
                 android:textColor="#fff"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="Châu Đức Giang"
+                android:text="User"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -159,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="chau.ducgiang@gmail.com"
+                android:text="123@gmail.com"
                 android:textStyle="bold" />
         </LinearLayout>
 

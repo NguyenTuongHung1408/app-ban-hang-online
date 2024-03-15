@@ -24,7 +24,7 @@ import java.text.DecimalFormat;
 
 import com.example.appbanhangonline.model.Sanpham;
 
-public class ChiTietSanPham extends AppCompatActivity {
+public class ChiTietSanPhamActivity extends AppCompatActivity {
     Toolbar toolbarchitiet;
     ImageView imgchitiet;
     TextView txtten, txtgia, txtmota;

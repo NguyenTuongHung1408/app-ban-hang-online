@@ -19,7 +19,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appbanhangonline.App;
 import com.example.appbanhangonline.R;
+import com.example.appbanhangonline.database.KhachHangRepository;
 import com.example.appbanhangonline.model.Account;
 
 import org.json.JSONException;
@@ -40,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnRegister;
     private Button btnLogin;
     private ProgressDialog pDialog;
+    private KhachHangRepository khachHangRepository;
 
     public static final String REGISTER_URL = Server.signup;
 
@@ -53,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         addControls();
         addEvents();
+        khachHangRepository = new KhachHangRepository(App.getDb());
     }
 
     private void addEvents() {
@@ -76,11 +80,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void addControls() {
 
-        edtUserName =  findViewById(R.id.txtNameDK);
-        edtPassWord =  findViewById(R.id.txtPassDK);
-        btnRegister =  findViewById(R.id.btnDangkiDK);
-        btnLogin =  findViewById(R.id.btnDangnhapDK);
-        edtEmail =  findViewById(R.id.txtEmailDK);
+        edtUserName = findViewById(R.id.txtNameDK);
+        edtPassWord = findViewById(R.id.txtPassDK);
+        btnRegister = findViewById(R.id.btnDangkiDK);
+        btnLogin = findViewById(R.id.btnDangnhapDK);
+        edtEmail = findViewById(R.id.txtEmailDK);
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Đang đăng ký...");
         pDialog.setCanceledOnTouchOutside(false);
@@ -97,53 +101,20 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (checkEditText(edtUserName) && checkEditText(edtPassWord) && checkEditText(edtEmail) && isValidEmail(email)) {
             pDialog.show();
-            StringRequest registerRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Log.d(TAG, response);
-                            String message = "";
-                            try {
-                                JSONObject jsonObject = new JSONObject(response);
-                                if (jsonObject.getInt("success") == 1) {
-                                    Account account = new Account();
-                                    account.setUserName(jsonObject.getString("user_name"));
-                                    account.setEmail(jsonObject.getString("email"));
-                                    message = jsonObject.getString("message");
-                                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
-                                    //Start LoginActivity
-                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    message = jsonObject.getString("message");
-                                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
-                                }
-                            } catch (JSONException error) {
-                                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                            }
-                            pDialog.dismiss();
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            VolleyLog.d(TAG, "Error: " + error.getMessage());
-                            pDialog.dismiss();
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<>();
-                    params.put(KEY_USERNAME, username);
-                    params.put(KEY_PASSWORD, password);
-                    params.put(KEY_EMAIL, email);
-                    return params;
-                }
-
-            };
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            requestQueue.add(registerRequest);
+            User newUser = new User(username, email, password);
+            khachHangRepository.register(newUser, ignored1 -> {
+                pDialog.hide();
+                showToast("Đăng ký thành công", Toast.LENGTH_SHORT);
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+            }, ignored2 -> {
+                pDialog.hide();
+            });
         }
+    }
+
+    private void showToast(String message, int time) {
+        Toast.makeText(this, message, time).show();
     }
 
     /**

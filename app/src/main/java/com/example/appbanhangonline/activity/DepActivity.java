@@ -87,7 +87,7 @@ public class DepActivity extends AppCompatActivity {
         lvdep.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getApplicationContext(),ChiTietSanPham.class);
+                Intent intent=new Intent(getApplicationContext(), ChiTietSanPhamActivity.class);
                 intent.putExtra("thongtinsanpham",mangdep.get(position));
                 startActivity(intent);
             }
